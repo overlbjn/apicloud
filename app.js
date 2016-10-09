@@ -182,7 +182,7 @@ function receivedMessage(event) {
     console.log("Quick reply for message %s with payload %s",
       messageId, quickReplyPayload);
 
-    sendTextMessage(senderID, "Quick reply tapped");
+    sendTextMessage(senderID, "好的，我明白了！");
     return;
   }
 
@@ -620,21 +620,21 @@ function sendQuickReply(recipientId) {
       id: recipientId
     },
     message: {
-      text: "What's your favorite movie genre?",
+      text: "请问您的预算是多少?",
       quick_replies: [
         {
           "content_type":"text",
-          "title":"Action",
+          "title":"5万以下",
           "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION"
         },
         {
           "content_type":"text",
-          "title":"Comedy",
+          "title":"5-10万",
           "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
         },
         {
           "content_type":"text",
-          "title":"Drama",
+          "title":"10万以上",
           "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
         }
       ]
