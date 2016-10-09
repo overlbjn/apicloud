@@ -192,39 +192,39 @@ function receivedMessage(event) {
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
     switch (messageText) {
-      case 'image':
+      case '图片':
         sendImageMessage(senderID);
         break;
 
-      case 'gif':
+      case '动图':
         sendGifMessage(senderID);
         break;
 
-      case 'audio':
+      case '音频':
         sendAudioMessage(senderID);
         break;
 
-      case 'video':
+      case '视频':
         sendVideoMessage(senderID);
         break;
 
-      case 'file':
+      case '文件':
         sendFileMessage(senderID);
         break;
 
-      case 'button':
+      case '按钮':
         sendButtonMessage(senderID);
         break;
 
-      case 'generic':
+      case '模板':
         sendGenericMessage(senderID);
         break;
 
-      case 'receipt':
+      case '订单':
         sendReceiptMessage(senderID);
         break;
 
-      case 'quick reply':
+      case '快速回复':
         sendQuickReply(senderID);
         break;        
 
@@ -350,7 +350,7 @@ function sendImageMessage(recipientId) {
       attachment: {
         type: "image",
         payload: {
-          url: SERVER_URL + "/assets/rift.png"
+          url: SERVER_URL + "/assets/icon150.png"
         }
       }
     }
@@ -479,19 +479,19 @@ function sendButtonMessage(recipientId) {
         type: "template",
         payload: {
           template_type: "button",
-          text: "This is test text",
+          text: "APICloud",
           buttons:[{
             type: "web_url",
-            url: "https://www.oculus.com/en-us/rift/",
-            title: "Open Web URL"
+            url: "https://www.apicloud.com",
+            title: "访问官网"
           }, {
-            type: "postback",
-            title: "Trigger Postback",
-            payload: "DEVELOPED_DEFINED_PAYLOAD"
+            type: "web_url",
+            url: "https://app.apicloud.com",
+            title: "模板商店"
           }, {
             type: "phone_number",
-            title: "Call Phone Number",
-            payload: "+16505551234"
+            title: "联系我们",
+            payload: "+8618710103168"
           }]
         }
       }
@@ -516,32 +516,24 @@ function sendGenericMessage(recipientId) {
         payload: {
           template_type: "generic",
           elements: [{
-            title: "rift",
-            subtitle: "Next-generation virtual reality",
-            item_url: "https://www.oculus.com/en-us/rift/",               
-            image_url: SERVER_URL + "/assets/rift.png",
+            title: "APP定制",
+            subtitle: "一个承诺“保上线·便宜·快”的APP定制平台",
+            item_url: "http://app.apicloud.com/customIntroduce",               
+            image_url: SERVER_URL + "/assets/product1.png",
             buttons: [{
               type: "web_url",
-              url: "https://www.oculus.com/en-us/rift/",
-              title: "Open Web URL"
-            }, {
-              type: "postback",
-              title: "Call Postback",
-              payload: "Payload for first bubble",
+              url: "http://app.apicloud.com/customIntroduce",
+              title: "立刻定制"
             }],
           }, {
-            title: "touch",
-            subtitle: "Your Hands, Now in VR",
-            item_url: "https://www.oculus.com/en-us/touch/",               
-            image_url: SERVER_URL + "/assets/touch.png",
+            title: "APP模板商店",
+            subtitle: "不用耗费几个月开发APP",
+            item_url: "http://app.apicloud.com/appCustom",               
+            image_url: SERVER_URL + "/assets/product2.png",
             buttons: [{
               type: "web_url",
-              url: "https://www.oculus.com/en-us/touch/",
-              title: "Open Web URL"
-            }, {
-              type: "postback",
-              title: "Call Postback",
-              payload: "Payload for second bubble",
+              url: "http://app.apicloud.com/appCustom",
+              title: "去瞧瞧"
             }]
           }]
         }
@@ -572,30 +564,30 @@ function sendReceiptMessage(recipientId) {
           recipient_name: "Peter Chang",
           order_number: receiptId,
           currency: "USD",
-          payment_method: "Visa 1234",        
+          payment_method: "paypal",        
           timestamp: "1428444852", 
           elements: [{
-            title: "Oculus Rift",
-            subtitle: "Includes: headset, sensor, remote",
+            title: "电商类A型",
+            subtitle: "此模板是一款电商类APP模板，它涵盖了商品分类、购物车、充值、订单管理等所有电商的基本功能，同时支持对商品、店铺、员工、广告、资金的管理，模版操作灵活，能覆盖大多数类型的电商应用",
             quantity: 1,
             price: 599.00,
             currency: "USD",
-            image_url: SERVER_URL + "/assets/riftsq.png"
+            image_url: SERVER_URL + "/assets/product1.png"
           }, {
-            title: "Samsung Gear VR",
-            subtitle: "Frost White",
+            title: "订餐类A型",
+            subtitle: "此模板是一个O2O类的外卖模版，APP端包括用户端和配送端。此模版基于定位功能将附近商家聚合到平台上，同时关联了附近配送员提供跑腿配送服务，真正打造了多商家、用户和配送员三个群体的生态闭环",
             quantity: 1,
             price: 99.99,
             currency: "USD",
-            image_url: SERVER_URL + "/assets/gearvrsq.png"
+            image_url: SERVER_URL + "/assets/product2.png"
           }],
           address: {
-            street_1: "1 Hacker Way",
+            street_1: "508 泰翔商务楼",
             street_2: "",
-            city: "Menlo Park",
-            postal_code: "94025",
-            state: "CA",
-            country: "US"
+            city: "海淀",
+            postal_code: "100000",
+            state: "北京",
+            country: "中国"
           },
           summary: {
             subtotal: 698.99,
@@ -715,7 +707,6 @@ function callSendAPI(messageData) {
     json: messageData
 
   }, function (error, response, body) {
-  	console.log('121:'+response);
     if (!error && response.statusCode == 200) {
       var recipientId = body.recipient_id;
       var messageId = body.message_id;
