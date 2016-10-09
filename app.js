@@ -11,7 +11,7 @@ var request = require('request');
 
 var app = express();
 var PAGE_ACCESS_TOKEN = 'EAAE7i2ZBbLxsBABeVxYLf7A4rSSQyCC9DN16PAKndtSkHziWBsbMXZAoSV5fX1DLus5FLjx8bdhayxD0w6bx2I19BNJqoCRP4cQfm8M16caRMDZCJxZAMCEeB2T39Mn5jgbyef2hjrSjIWesiZCsUrusabeykDn8hKzbbQNGSil6OLOAQLcU5';
-var SERVER_URL = 'http://apicloud.leanapp.cn';
+var SERVER_URL = 'http://apicloudus.avosapps.us';
 // 设置模板引擎
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
